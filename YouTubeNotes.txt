@@ -1,0 +1,9 @@
+javac -classpath hadoop-core-1.2.1.jar -d Top5 Top5_categories.java
+
+jar -cvf Top5_categories.jar -C Top5/ .
+
+hadoop jar Top5_categories.jar Top5_categories /rajan/input/youtubedata.txt /output
+
+hadoop fs -rm -r /output
+
+ hadoop fs -cat /output/part-r-* | sort -n -k2 -r | head -n5 
